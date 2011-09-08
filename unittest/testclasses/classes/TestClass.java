@@ -1,10 +1,11 @@
-package bwindels.unittests.testclasses.classes;
+package testclasses.classes;
 
 import java.util.List;
 
-import bwindels.unittests.testclasses.annotations.TestAnno1;
-import bwindels.unittests.testclasses.annotations.TestAnno2;
-import bwindels.unittests.testclasses.annotations.TestAnno3;
+import testclasses.annotations.TestAnno1;
+import testclasses.annotations.TestAnno2;
+import testclasses.annotations.TestAnno3;
+
 
 @TestAnno3(factor=3.141592)
 public class TestClass {

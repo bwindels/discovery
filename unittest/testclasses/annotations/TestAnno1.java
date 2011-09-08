@@ -1,4 +1,4 @@
-package bwindels.unittests.testclasses.annotations;
+package testclasses.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE})
-public @interface TestAnno3 {
-	double factor();
+@Target({ElementType.FIELD,ElementType.METHOD})
+public @interface TestAnno1 {
+	String value();
 }

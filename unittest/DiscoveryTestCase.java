@@ -1,9 +1,14 @@
-package bwindels.unittests;
+
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import testclasses.annotations.TestAnno1;
+import testclasses.annotations.TestAnno2;
+import testclasses.annotations.TestAnno3;
+import testclasses.classes.TestClass;
 
 import bwindels.discovery.ClassDiscovery;
 import bwindels.discovery.ClassDiscoveryListener;
@@ -11,10 +16,6 @@ import bwindels.discovery.ClassPathIterable;
 import bwindels.discovery.TypeDeclaration;
 import bwindels.discovery.impl.annotation.AnnotationImpl;
 import bwindels.discovery.impl.annotation.AnnotationParam;
-import bwindels.unittests.testclasses.annotations.TestAnno1;
-import bwindels.unittests.testclasses.annotations.TestAnno2;
-import bwindels.unittests.testclasses.annotations.TestAnno3;
-import bwindels.unittests.testclasses.classes.TestClass;
 
 
 import junit.framework.TestCase;
@@ -188,7 +189,7 @@ public class DiscoveryTestCase extends TestCase implements ClassDiscoveryListene
 	}
 	
 	public void testClassDiscovery() {
-		String packageName = this.getClass().getPackage().getName()+".testclasses.classes";
+		String packageName = "testclasses.classes";
 		ClassDiscovery s = new ClassDiscovery(new String[]{packageName});
 		s.addListener(this);
 		s.scan();
