@@ -11,8 +11,8 @@ import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 
 import bwindels.discovery.ClassDiscoveryListener;
-import bwindels.discovery.TypeRef;
-import bwindels.discovery.impl.annotation.Annotation;
+import bwindels.discovery.TypeDeclaration;
+import bwindels.discovery.impl.annotation.AnnotationImpl;
 import bwindels.discovery.impl.annotation.AnnotationBuilder;
 import bwindels.discovery.impl.annotation.AnnotationParam;
 import bwindels.discovery.impl.annotation.ClassAnnotationBuilder;
@@ -73,8 +73,8 @@ public class ClassDataScanner implements ClassVisitor {
 	public MethodVisitor visitMethod(int access, String name, String desc,
 			String signature, String[] exceptions) {
 		Reader sig = new StringReader(signature==null?desc:signature);
-		TypeRef[] arguments = TypeUtil.parseSignature(sig);
-		TypeRef returnType = TypeUtil.parseTypeDescriptor(sig);
+		TypeDeclaration[] arguments = TypeUtil.parseSignature(sig);
+		TypeDeclaration returnType = TypeUtil.parseTypeDescriptor(sig);
 		boolean getAnnotations;
 		if(name.equals("<init>")) {
 			getAnnotations = listener.onConstructor(access, currentTypeName, arguments);
@@ -93,7 +93,7 @@ public class ClassDataScanner implements ClassVisitor {
 
 	@Override
 	public AnnotationVisitor visitAnnotation(String desc, boolean arg1) {
-		classAnnotationBuilder.setAnnotation(new Annotation(TypeUtil.parseClassName(desc)));
+		classAnnotationBuilder.setAnnotation(new AnnotationImpl(TypeUtil.parseClassName(desc)));
 		return classAnnotationBuilder;
 	}
 	
@@ -101,7 +101,7 @@ public class ClassDataScanner implements ClassVisitor {
 
 		@Override
 		public AnnotationVisitor visitAnnotation(String desc, boolean arg1) {
-			fieldAnnotationBuilder.setAnnotation(new Annotation(TypeUtil.parseClassName(desc)));
+			fieldAnnotationBuilder.setAnnotation(new AnnotationImpl(TypeUtil.parseClassName(desc)));
 			return fieldAnnotationBuilder;
 		}
 
@@ -119,7 +119,7 @@ public class ClassDataScanner implements ClassVisitor {
 
 		@Override
 		public AnnotationVisitor visitAnnotation(String desc, boolean arg1) {
-			methodAnnotationBuilder.setAnnotation(new Annotation(TypeUtil.parseClassName(desc)));
+			methodAnnotationBuilder.setAnnotation(new AnnotationImpl(TypeUtil.parseClassName(desc)));
 			methodAnnotationBuilder.setConstructor(lastMethodIsConstructor);
 			return methodAnnotationBuilder;
 		}

@@ -3,19 +3,18 @@ package bwindels.discovery.impl;
 import java.util.LinkedList;
 import java.util.List;
 
-import bwindels.discovery.TypeRef;
+import bwindels.discovery.TypeDeclaration;
 
-//TODO optimization: share common type information
-public class LiteralTypeRef implements TypeRef {
+public class LiteralTypeDeclaration implements TypeDeclaration {
 	private String typeName;
 	private int arrayDimensions = 0;
-	private List<TypeRef> genericTypeParams = null;
+	private List<TypeDeclaration> genericTypeParams = null;
 
-	public LiteralTypeRef() {
+	public LiteralTypeDeclaration() {
 		
 	}
 	
-	public LiteralTypeRef(String typeName) {
+	public LiteralTypeDeclaration(String typeName) {
 		setTypeName(typeName);
 	}
 	
@@ -27,9 +26,9 @@ public class LiteralTypeRef implements TypeRef {
 		this.arrayDimensions = count;
 	}
 	
-	public void addGenericTypeParam(TypeRef tv) {
+	public void addGenericTypeParam(TypeDeclaration tv) {
 		if(genericTypeParams==null) {
-			genericTypeParams = new LinkedList<TypeRef>();
+			genericTypeParams = new LinkedList<TypeDeclaration>();
 		}
 		genericTypeParams.add(tv);
 	}
@@ -40,7 +39,7 @@ public class LiteralTypeRef implements TypeRef {
 	}
 
 	@Override
-	public Iterable<TypeRef> getGenericTypeParams() {
+	public Iterable<TypeDeclaration> getGenericTypeParams() {
 		return genericTypeParams;
 	}
 
@@ -78,29 +77,5 @@ public class LiteralTypeRef implements TypeRef {
 			typeName.equals(long.class.getName()) ||
 			typeName.equals(float.class.getName()) ||
 			typeName.equals(double.class.getName());
-	}
-
-	@Override
-	public TypeRef getSuperType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Iterable<TypeRef> getDeclaredInterfaces() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean implementsInterface(TypeRef t) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean inheritsFromType(TypeRef t) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

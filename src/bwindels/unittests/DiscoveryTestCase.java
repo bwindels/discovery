@@ -8,8 +8,8 @@ import java.util.Map;
 import bwindels.discovery.ClassDiscovery;
 import bwindels.discovery.ClassDiscoveryListener;
 import bwindels.discovery.ClassPathIterable;
-import bwindels.discovery.TypeRef;
-import bwindels.discovery.impl.annotation.Annotation;
+import bwindels.discovery.TypeDeclaration;
+import bwindels.discovery.impl.annotation.AnnotationImpl;
 import bwindels.discovery.impl.annotation.AnnotationParam;
 import bwindels.unittests.testclasses.annotations.TestAnno1;
 import bwindels.unittests.testclasses.annotations.TestAnno2;
@@ -38,7 +38,7 @@ public class DiscoveryTestCase extends TestCase implements ClassDiscoveryListene
 	}
 
 	@Override
-	public void onClassAnnotation(Annotation a) {
+	public void onClassAnnotation(AnnotationImpl a) {
 		typeAnnotations.put(a.getType(),true);
 		assertTrue(a.getType().equals(TestAnno3.class.getName()));
 		Iterator<AnnotationParam> it = a.getParams().iterator();
@@ -55,7 +55,7 @@ public class DiscoveryTestCase extends TestCase implements ClassDiscoveryListene
 	}
 
 	@Override
-	public boolean onField(int access, TypeRef type, String name) {
+	public boolean onField(int access, TypeDeclaration type, String name) {
 		fields.put(name, true);
 		currentField = name;
 		assertTrue((access & Private)!=0);
@@ -70,7 +70,7 @@ public class DiscoveryTestCase extends TestCase implements ClassDiscoveryListene
 	}
 
 	@Override
-	public void onFieldAnnotation(Annotation a) {
+	public void onFieldAnnotation(AnnotationImpl a) {
 		fieldAnnotations.put(currentField, true);
 		assertTrue(currentField.equals("name") || currentField.equals("foo"));
 		assertTrue(a.getType().equals(TestAnno1.class.getName()));
@@ -83,7 +83,7 @@ public class DiscoveryTestCase extends TestCase implements ClassDiscoveryListene
 
 	@Override
 	public boolean onMethod(int access, String typeName, String methodName,
-			TypeRef[] types, TypeRef returnType) {
+			TypeDeclaration[] types, TypeDeclaration returnType) {
 		methods.put(methodName, true);
 		currentMethod = methodName;
 		if(methodName.equals("getName")) {
@@ -99,7 +99,7 @@ public class DiscoveryTestCase extends TestCase implements ClassDiscoveryListene
 			assertTrue(types[1].getTypeName().equals(int.class.getName()));
 			assertTrue(types[2].getTypeName().equals(List.class.getName()));
 			assertTrue(types[2].isGeneric());
-			Iterator<TypeRef> it = types[2].getGenericTypeParams().iterator();
+			Iterator<TypeDeclaration> it = types[2].getGenericTypeParams().iterator();
 			assertTrue(it.next().getTypeName().equals(Double.class.getName()));
 			assertFalse(it.hasNext());
 		} else if(methodName.equals("getFoo")) {
@@ -120,7 +120,7 @@ public class DiscoveryTestCase extends TestCase implements ClassDiscoveryListene
 	}
 
 	@Override
-	public void onMethodAnnotation(Annotation a) {
+	public void onMethodAnnotation(AnnotationImpl a) {
 		methodAnnotations.put(currentMethod, true);
 		if(currentMethod.equals("setName")) {
 			assertTrue(a.getType().equals(TestAnno2.class.getName()));
@@ -128,8 +128,8 @@ public class DiscoveryTestCase extends TestCase implements ClassDiscoveryListene
 			for (AnnotationParam p : a.getParams()) {
 				++paramCount;
 				if(p.getName().equals("anno")) {
-					assertTrue(p.getValue() instanceof Annotation);
-					Annotation av = (Annotation)p.getValue();
+					assertTrue(p.getValue() instanceof AnnotationImpl);
+					AnnotationImpl av = (AnnotationImpl)p.getValue();
 					assertTrue(av.getType().equals(TestAnno1.class.getName()));
 					Iterator<AnnotationParam> avpit = av.getParams().iterator();
 					AnnotationParam avp = avpit.next();
@@ -137,12 +137,12 @@ public class DiscoveryTestCase extends TestCase implements ClassDiscoveryListene
 					assertTrue(avp.getValue().equals("tata"));
 					assertFalse(avpit.hasNext());
 				} else if(p.getName().equals("annos")) {
-					assertTrue(p.getValue() instanceof Annotation[]);
-					Annotation[] arrayValues = (Annotation[])p.getValue();
+					assertTrue(p.getValue() instanceof AnnotationImpl[]);
+					AnnotationImpl[] arrayValues = (AnnotationImpl[])p.getValue();
 					assertTrue(arrayValues.length==3);
 					String[] refValues = {"one","two","three"};
 					int counter = 0;
-					for (Annotation av : arrayValues) {
+					for (AnnotationImpl av : arrayValues) {
 						assertTrue(av.getType().equals(TestAnno1.class.getName()));
 						Iterator<AnnotationParam> avpit = av.getParams().iterator();
 						AnnotationParam avp = avpit.next();
@@ -177,13 +177,13 @@ public class DiscoveryTestCase extends TestCase implements ClassDiscoveryListene
 	}
 	
 	@Override
-	public boolean onConstructor(int access, String typeName, TypeRef[] types) {
+	public boolean onConstructor(int access, String typeName, TypeDeclaration[] types) {
 		constructorVisited = true;
 		return true;
 	}
 
 	@Override
-	public void onConstructorAnnotation(Annotation a) {
+	public void onConstructorAnnotation(AnnotationImpl a) {
 		
 	}
 	

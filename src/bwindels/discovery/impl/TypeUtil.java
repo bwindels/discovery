@@ -6,7 +6,7 @@ import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.List;
 
-import bwindels.discovery.TypeRef;
+import bwindels.discovery.TypeDeclaration;
 
 
 public class TypeUtil {
@@ -14,12 +14,12 @@ public class TypeUtil {
 	private static final byte ParseStageTypeIdentifier = 2;
 	private static final byte ParseStageClassName = 3;
 	
-	public static TypeRef parseTypeName(String t) {
+	public static TypeDeclaration parseTypeName(String t) {
 		return parseTypeDescriptor(new StringReader(t));
 	}
 	
-	public static TypeRef parseTypeDescriptor(Reader t) {
-		LiteralTypeRef type = new LiteralTypeRef();
+	public static TypeDeclaration parseTypeDescriptor(Reader t) {
+		LiteralTypeDeclaration type = new LiteralTypeDeclaration();
 		StringBuffer buf = null;
 		int stage = ParseStageArray;
 		int c;
@@ -77,7 +77,7 @@ public class TypeUtil {
 					} else if(c=='<') {
 						int nextc;
 						do {
-							TypeRef tv = parseTypeDescriptor(t);
+							TypeDeclaration tv = parseTypeDescriptor(t);
 							type.addGenericTypeParam(tv);
 							t.mark(1);
 							nextc = t.read();
@@ -106,8 +106,8 @@ public class TypeUtil {
 		return typeDescriptor.replace('/', '.');
 	}
 	
-	public static TypeRef[] parseSignature(Reader r) {
-		List<TypeRef> values = new LinkedList<TypeRef>();
+	public static TypeDeclaration[] parseSignature(Reader r) {
+		List<TypeDeclaration> values = new LinkedList<TypeDeclaration>();
 		try {
 			//skip '('
 			r.read();
@@ -121,7 +121,7 @@ public class TypeUtil {
 					break;
 				}
 			}
-			return values.toArray(new TypeRef[]{});
+			return values.toArray(new TypeDeclaration[]{});
 		} catch (IOException e) {
 			return null;
 		}

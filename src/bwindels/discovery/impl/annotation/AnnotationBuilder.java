@@ -7,16 +7,16 @@ import bwindels.discovery.impl.TypeUtil;
 
 public class AnnotationBuilder implements AnnotationVisitor {
 
-	private Annotation annotation;
+	private AnnotationImpl annotation;
 	private ArrayBuilder arrayBuilder;
 	@Override
 	public void visit(String name, Object value) {
-		annotation.addParam(new AnnotationParam(name, Annotation.convertAnnotationValue(value)));
+		annotation.addParam(new AnnotationParam(name, AnnotationImpl.convertAnnotationValue(value)));
 	}
 
 	@Override
 	public AnnotationVisitor visitAnnotation(String name, String desc) {
-		Annotation a = new Annotation(TypeUtil.parseClassName(desc));
+		AnnotationImpl a = new AnnotationImpl(TypeUtil.parseClassName(desc));
 		annotation.addParam(new AnnotationParam(name, a));
 		AnnotationBuilder ab = new AnnotationBuilder();
 		ab.setAnnotation(a);
@@ -42,11 +42,11 @@ public class AnnotationBuilder implements AnnotationVisitor {
 		annotation.addParam(new AnnotationParam(name,new EnumValueImpl(TypeUtil.parseClassName(desc), value)));
 	}
 
-	public Annotation getAnnotation() {
+	public AnnotationImpl getAnnotation() {
 		return annotation;
 	}
 
-	public void setAnnotation(Annotation annotation) {
+	public void setAnnotation(AnnotationImpl annotation) {
 		this.annotation = annotation;
 	}
 }

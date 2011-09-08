@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import bwindels.discovery.ClassDiscoveryListener;
-import bwindels.discovery.TypeRef;
-import bwindels.discovery.impl.annotation.Annotation;
+import bwindels.discovery.TypeDeclaration;
+import bwindels.discovery.impl.annotation.AnnotationImpl;
 
 
 public class ProxyDiscoveryListener implements ClassDiscoveryListener {
@@ -27,7 +27,7 @@ public class ProxyDiscoveryListener implements ClassDiscoveryListener {
 		}
 	}
 
-	public void onClassAnnotation(Annotation a) {
+	public void onClassAnnotation(AnnotationImpl a) {
 		for (ClassDiscoveryListener listener : listeners) {
 			listener.onClassAnnotation(a);
 		}
@@ -39,7 +39,7 @@ public class ProxyDiscoveryListener implements ClassDiscoveryListener {
 		}
 	}
 
-	public boolean onField(int access, TypeRef type, String name) {
+	public boolean onField(int access, TypeDeclaration type, String name) {
 		boolean result = false;
 		for (ClassDiscoveryListener listener : listeners) {
 			if(listener.onField(access, type, name)) {
@@ -49,14 +49,14 @@ public class ProxyDiscoveryListener implements ClassDiscoveryListener {
 		return result;
 	}
 
-	public void onFieldAnnotation(Annotation a) {
+	public void onFieldAnnotation(AnnotationImpl a) {
 		for (ClassDiscoveryListener listener : listeners) {
 			listener.onFieldAnnotation(a);
 		}
 	}
 
 	public boolean onMethod(int access, String typeName, String methodName,
-			TypeRef[] types, TypeRef returnType) {
+			TypeDeclaration[] types, TypeDeclaration returnType) {
 		boolean result = false;
 		for (ClassDiscoveryListener listener : listeners) {
 			if(listener.onMethod(access, typeName, methodName, types, returnType)) {
@@ -66,14 +66,14 @@ public class ProxyDiscoveryListener implements ClassDiscoveryListener {
 		return result;
 	}
 
-	public void onMethodAnnotation(Annotation a) {
+	public void onMethodAnnotation(AnnotationImpl a) {
 		for (ClassDiscoveryListener listener : listeners) {
 			listener.onMethodAnnotation(a);
 		}
 	}
 
 	@Override
-	public boolean onConstructor(int access, String typeName, TypeRef[] types) {
+	public boolean onConstructor(int access, String typeName, TypeDeclaration[] types) {
 		boolean result = false;
 		for (ClassDiscoveryListener listener : listeners) {
 			if(listener.onConstructor(access, typeName, types)) {
@@ -84,7 +84,7 @@ public class ProxyDiscoveryListener implements ClassDiscoveryListener {
 	}
 
 	@Override
-	public void onConstructorAnnotation(Annotation a) {
+	public void onConstructorAnnotation(AnnotationImpl a) {
 		for (ClassDiscoveryListener listener : listeners) {
 			listener.onConstructorAnnotation(a);
 		}

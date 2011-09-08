@@ -15,12 +15,12 @@ public class ArrayBuilder implements AnnotationVisitor {
 	private AnnotationBuilder nestedAnnotationBuilder;
 	@Override
 	public void visit(String name, Object value) {
-		values.add(Annotation.convertAnnotationValue(value));
+		values.add(AnnotationImpl.convertAnnotationValue(value));
 	}
 
 	@Override
 	public AnnotationVisitor visitAnnotation(String name, String desc) {
-		Annotation a = new Annotation(TypeUtil.parseClassName(desc));
+		AnnotationImpl a = new AnnotationImpl(TypeUtil.parseClassName(desc));
 		values.add(a);
 		if(nestedAnnotationBuilder==null) {
 			nestedAnnotationBuilder = new AnnotationBuilder();

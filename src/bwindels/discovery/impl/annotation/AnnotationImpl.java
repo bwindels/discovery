@@ -5,17 +5,18 @@ import java.util.List;
 
 import org.objectweb.asm.Type;
 
-import bwindels.discovery.impl.LiteralTypeRef;
+import bwindels.discovery.Annotation;
+import bwindels.discovery.impl.LiteralTypeDeclaration;
 
-public class Annotation {
+public class AnnotationImpl implements Annotation {
 	private String type;
 	private List<AnnotationParam> params = new LinkedList<AnnotationParam>();
 	
-	public Annotation() {
+	public AnnotationImpl() {
 		
 	}
 	
-	public Annotation(String type) {
+	public AnnotationImpl(String type) {
 		setType(type);
 	}
 	
@@ -23,6 +24,7 @@ public class Annotation {
 		type = t;
 	}
 	
+	@Override
 	public String getType() {
 		return type;
 	}
@@ -35,13 +37,14 @@ public class Annotation {
 		params.clear();
 	}
 	
+	@Override
 	public Iterable<AnnotationParam> getParams() {
 		return params;
 	}
 	
 	protected static Object convertAnnotationValue(Object value) {
 		if(value instanceof Type) {
-			return new LiteralTypeRef(((Type)value).getClassName());
+			return new LiteralTypeDeclaration(((Type)value).getClassName());
 		} else {
 			return value;
 		}

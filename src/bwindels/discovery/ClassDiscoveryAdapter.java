@@ -1,6 +1,7 @@
 package bwindels.discovery;
 
-import bwindels.discovery.impl.annotation.Annotation;
+import bwindels.discovery.impl.annotation.AnnotationImpl;
+
 
 public class ClassDiscoveryAdapter implements ClassDiscoveryListener {
 
@@ -11,7 +12,7 @@ public class ClassDiscoveryAdapter implements ClassDiscoveryListener {
 	}
 
 	@Override
-	public void onClassAnnotation(Annotation a) {
+	public void onClassAnnotation(AnnotationImpl a) {
 
 	}
 
@@ -21,33 +22,33 @@ public class ClassDiscoveryAdapter implements ClassDiscoveryListener {
 	}
 
 	@Override
-	public boolean onConstructor(int access, String typeName, TypeRef[] types) {
+	public boolean onConstructor(int access, String typeName, TypeDeclaration[] types) {
 		return false;
 	}
 
 	@Override
-	public void onConstructorAnnotation(Annotation a) {
+	public void onConstructorAnnotation(AnnotationImpl a) {
 
 	}
 
 	@Override
-	public boolean onField(int access, TypeRef type, String name) {
+	public boolean onField(int access, TypeDeclaration type, String name) {
 		return false;
 	}
 
 	@Override
-	public void onFieldAnnotation(Annotation a) {
+	public void onFieldAnnotation(AnnotationImpl a) {
 
 	}
 
 	@Override
 	public boolean onMethod(int access, String typeName, String methodName,
-			TypeRef[] types, TypeRef returnType) {
+			TypeDeclaration[] types, TypeDeclaration returnType) {
 		return false;
 	}
 
 	@Override
-	public void onMethodAnnotation(Annotation a) {
+	public void onMethodAnnotation(AnnotationImpl a) {
 
 	}
 
