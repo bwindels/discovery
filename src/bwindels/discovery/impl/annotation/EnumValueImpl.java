@@ -1,4 +1,4 @@
-package bwindels.discovery.annotation;
+package bwindels.discovery.impl.annotation;
 
 class EnumValueImpl implements EnumValue {
 	private String type;

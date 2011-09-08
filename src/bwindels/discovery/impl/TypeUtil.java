@@ -1,4 +1,4 @@
-package bwindels.discovery;
+package bwindels.discovery.impl;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -6,8 +6,7 @@ import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.List;
 
-import bwindels.reflection.LiteralTypeRef;
-import bwindels.reflection.TypeRef;
+import bwindels.discovery.TypeRef;
 
 
 public class TypeUtil {

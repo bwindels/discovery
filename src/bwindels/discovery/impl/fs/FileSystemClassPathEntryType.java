@@ -1,11 +1,11 @@
-package bwindels.discovery.fs;
+package bwindels.discovery.impl.fs;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import bwindels.discovery.ClassFileScanner;
-import bwindels.discovery.ClassPathEntryType;
+import bwindels.discovery.impl.ClassFileScanner;
+import bwindels.discovery.impl.ClassPathEntryType;
 
 
 public class FileSystemClassPathEntryType implements ClassPathEntryType {

@@ -1,4 +1,4 @@
-package bwindels.discovery;
+package bwindels.discovery.impl;
 
 import java.util.Iterator;
 

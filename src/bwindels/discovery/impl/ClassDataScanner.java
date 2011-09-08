@@ -1,4 +1,4 @@
-package bwindels.discovery;
+package bwindels.discovery.impl;
 
 import java.io.Reader;
 import java.io.StringReader;
@@ -10,13 +10,14 @@ import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 
-import bwindels.discovery.annotation.Annotation;
-import bwindels.discovery.annotation.AnnotationBuilder;
-import bwindels.discovery.annotation.AnnotationParam;
-import bwindels.discovery.annotation.ClassAnnotationBuilder;
-import bwindels.discovery.annotation.FieldAnnotationBuilder;
-import bwindels.discovery.annotation.MethodAnnotationBuilder;
-import bwindels.reflection.TypeRef;
+import bwindels.discovery.ClassDiscoveryListener;
+import bwindels.discovery.TypeRef;
+import bwindels.discovery.impl.annotation.Annotation;
+import bwindels.discovery.impl.annotation.AnnotationBuilder;
+import bwindels.discovery.impl.annotation.AnnotationParam;
+import bwindels.discovery.impl.annotation.ClassAnnotationBuilder;
+import bwindels.discovery.impl.annotation.FieldAnnotationBuilder;
+import bwindels.discovery.impl.annotation.MethodAnnotationBuilder;
 
 
 public class ClassDataScanner implements ClassVisitor {

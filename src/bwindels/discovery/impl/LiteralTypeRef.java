@@ -1,34 +1,22 @@
-package bwindels.reflection;
+package bwindels.discovery.impl;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import bwindels.reflection.classlocator.ClassLoaderLocator;
-import bwindels.reflection.classlocator.ClassLocator;
-
+import bwindels.discovery.TypeRef;
 
 //TODO optimization: share common type information
 public class LiteralTypeRef implements TypeRef {
 	private String typeName;
 	private int arrayDimensions = 0;
 	private List<TypeRef> genericTypeParams = null;
-	private ClassLocator _classLocator;
+
+	public LiteralTypeRef() {
+		
+	}
 	
 	public LiteralTypeRef(String typeName) {
-		this(typeName,new ClassLoaderLocator());
-	}
-	
-	public LiteralTypeRef(String typeName, ClassLocator locator) {
-		this(locator);
-		this.typeName = typeName;
-	}
-	
-	public LiteralTypeRef() {
-		this(new ClassLoaderLocator());
-	}
-	
-	public LiteralTypeRef(ClassLocator locator) {
-		_classLocator = locator;
+		setTypeName(typeName);
 	}
 	
 	public void setTypeName(String typeName) {

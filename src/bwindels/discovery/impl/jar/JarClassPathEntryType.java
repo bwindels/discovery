@@ -1,11 +1,11 @@
-package bwindels.discovery.jar;
+package bwindels.discovery.impl.jar;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.zip.ZipEntry;
 
-import bwindels.discovery.ClassFileScanner;
-import bwindels.discovery.ClassPathEntryType;
+import bwindels.discovery.impl.ClassFileScanner;
+import bwindels.discovery.impl.ClassPathEntryType;
 
 
 public class JarClassPathEntryType implements ClassPathEntryType {

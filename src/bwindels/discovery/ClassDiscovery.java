@@ -7,8 +7,12 @@ import java.util.LinkedList;
 import java.util.List;
 import org.objectweb.asm.ClassReader;
 
-import bwindels.discovery.fs.FileSystemClassPathEntryType;
-import bwindels.discovery.jar.JarClassPathEntryType;
+import bwindels.discovery.impl.ClassDataScanner;
+import bwindels.discovery.impl.ClassFileScanner;
+import bwindels.discovery.impl.ClassPathEntryType;
+import bwindels.discovery.impl.ProxyDiscoveryListener;
+import bwindels.discovery.impl.fs.FileSystemClassPathEntryType;
+import bwindels.discovery.impl.jar.JarClassPathEntryType;
 
 
 
@@ -18,6 +22,10 @@ public class ClassDiscovery implements ClassFileScanner {
 	private ProxyDiscoveryListener listeners = new ProxyDiscoveryListener();
 	private List<ClassPathEntryType> classPathScanners = new LinkedList<ClassPathEntryType>();
 	private Iterable<String> classPathEntries;
+	
+	public ClassDiscovery(String[] packages) {
+		this(packages, new ClassPathIterable());
+	}
 	
 	public ClassDiscovery(String[] packages, Iterable<String> classPathEntries) {
 		this.packages = packages;

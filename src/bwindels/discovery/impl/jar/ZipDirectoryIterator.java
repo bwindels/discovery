@@ -1,4 +1,4 @@
-package bwindels.discovery.jar;
+package bwindels.discovery.impl.jar;
 
 import java.io.File;
 import java.io.IOException;

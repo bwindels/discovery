@@ -1,4 +1,4 @@
-package bwindels.discovery.fs;
+package bwindels.discovery.impl.fs;
 
 import java.io.File;
 import java.util.Iterator;

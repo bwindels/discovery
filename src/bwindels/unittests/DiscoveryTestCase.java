@@ -8,9 +8,9 @@ import java.util.Map;
 import bwindels.discovery.ClassDiscovery;
 import bwindels.discovery.ClassDiscoveryListener;
 import bwindels.discovery.ClassPathIterable;
-import bwindels.discovery.annotation.Annotation;
-import bwindels.discovery.annotation.AnnotationParam;
-import bwindels.reflection.TypeRef;
+import bwindels.discovery.TypeRef;
+import bwindels.discovery.impl.annotation.Annotation;
+import bwindels.discovery.impl.annotation.AnnotationParam;
 import bwindels.unittests.testclasses.annotations.TestAnno1;
 import bwindels.unittests.testclasses.annotations.TestAnno2;
 import bwindels.unittests.testclasses.annotations.TestAnno3;
@@ -189,7 +189,7 @@ public class DiscoveryTestCase extends TestCase implements ClassDiscoveryListene
 	
 	public void testClassDiscovery() {
 		String packageName = this.getClass().getPackage().getName()+".testclasses.classes";
-		ClassDiscovery s = new ClassDiscovery(new String[]{packageName}, new ClassPathIterable());
+		ClassDiscovery s = new ClassDiscovery(new String[]{packageName});
 		s.addListener(this);
 		s.scan();
 		

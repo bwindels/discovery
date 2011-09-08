@@ -1,11 +1,11 @@
-package bwindels.discovery.annotation;
+package bwindels.discovery.impl.annotation;
 
 import java.lang.reflect.Array;
 import java.util.LinkedList;
 
 import org.objectweb.asm.AnnotationVisitor;
 
-import bwindels.discovery.TypeUtil;
+import bwindels.discovery.impl.TypeUtil;
 
 
 public class ArrayBuilder implements AnnotationVisitor {

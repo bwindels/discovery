@@ -1,7 +1,6 @@
 package bwindels.discovery;
 
-import bwindels.discovery.annotation.Annotation;
-import bwindels.reflection.TypeRef;
+import bwindels.discovery.impl.annotation.Annotation;
 
 public interface ClassDiscoveryListener {
 	public static final int Public =	0x0001;
@@ -10,6 +9,9 @@ public interface ClassDiscoveryListener {
 	public static final int Static =	0x0008;
 	public static final int Final =		0x0100;
 	
+	/**
+	 * Called whenever a 
+	 */
 	public void onClass(String typeName, String superClassName, String[] interfaces);
 	public void onClassAnnotation(Annotation a);
 	public boolean onField(int access, TypeRef type, String name);

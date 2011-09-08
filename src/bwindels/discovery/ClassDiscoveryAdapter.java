@@ -1,7 +1,6 @@
 package bwindels.discovery;
 
-import bwindels.discovery.annotation.Annotation;
-import bwindels.reflection.TypeRef;
+import bwindels.discovery.impl.annotation.Annotation;
 
 public class ClassDiscoveryAdapter implements ClassDiscoveryListener {
 

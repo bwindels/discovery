@@ -1,4 +1,4 @@
-package bwindels.reflection;
+package bwindels.discovery;
 
 public interface TypeRef {
 	public String getTypeName();

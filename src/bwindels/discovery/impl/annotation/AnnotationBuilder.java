@@ -1,8 +1,8 @@
-package bwindels.discovery.annotation;
+package bwindels.discovery.impl.annotation;
 
 import org.objectweb.asm.AnnotationVisitor;
 
-import bwindels.discovery.TypeUtil;
+import bwindels.discovery.impl.TypeUtil;
 
 
 public class AnnotationBuilder implements AnnotationVisitor {

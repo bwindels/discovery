@@ -1,10 +1,11 @@
-package bwindels.discovery;
+package bwindels.discovery.impl;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import bwindels.discovery.annotation.Annotation;
-import bwindels.reflection.TypeRef;
+import bwindels.discovery.ClassDiscoveryListener;
+import bwindels.discovery.TypeRef;
+import bwindels.discovery.impl.annotation.Annotation;
 
 
 public class ProxyDiscoveryListener implements ClassDiscoveryListener {

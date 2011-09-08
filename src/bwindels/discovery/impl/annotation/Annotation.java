@@ -1,9 +1,11 @@
-package bwindels.discovery.annotation;
+package bwindels.discovery.impl.annotation;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import org.objectweb.asm.Type;
+
+import bwindels.discovery.impl.LiteralTypeRef;
 
 public class Annotation {
 	private String type;
@@ -39,7 +41,7 @@ public class Annotation {
 	
 	protected static Object convertAnnotationValue(Object value) {
 		if(value instanceof Type) {
-			return new TypeRefImpl(((Type)value).getClassName());
+			return new LiteralTypeRef(((Type)value).getClassName());
 		} else {
 			return value;
 		}

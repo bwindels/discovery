@@ -2,6 +2,8 @@ package bwindels.discovery;
 
 import java.io.File;
 
+import bwindels.discovery.impl.ArrayIterable;
+
 public class ClassPathIterable extends ArrayIterable<String> {
 
 	public ClassPathIterable() {
